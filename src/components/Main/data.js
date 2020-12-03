@@ -38,7 +38,23 @@ fetchsellersinf()
 
 
     const mydatarender= sellers.map((seller)=>{
-      return<li>{JSON.stringify(seller.name)}</li>
+      return (
+        <div className="sellercard">
+        <div className= "left">
+          <div  className="sellerimage">
+      <img src={'/sellerimage'+seller.image}  alt={seller.name}/>
+      </div>
+      <p>{seller.number}</p>
+      <p>{seller.email}</p>
+      </div>
+      <div className="right">
+       <h1>{seller.name}</h1>
+       <p className="sellerdescription">{seller.description}</p>
+
+      </div>
+      </div>
+      )
+      
     })
   
 
@@ -46,7 +62,7 @@ fetchsellersinf()
     return ( 
       
         <div className="data">
-           <ul>{mydatarender}</ul>
+           {mydatarender}
     
       </div>
       

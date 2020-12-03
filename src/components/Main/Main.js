@@ -21,7 +21,6 @@ export const Main = function App() {
     {
       console.log(navigator)
             navigator.geolocation.getCurrentPosition((position)=>{ 
-              console.log('jeeeeeee--------->',position)
               setInfo((prevstate)=>{
                 setCheck(true)
              return {
