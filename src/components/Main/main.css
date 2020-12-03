@@ -1,0 +1,48 @@
+
+
+.my-search{
+    height:30vh;
+    width:100vw;
+    background-color:#81a3e7;
+    color:white;
+    display: flex;
+}
+.signature{
+    width:40%;
+    align-self: center;
+    text-align: center;
+    padding: 20px;
+}
+.my-form{
+    width:60%;
+    display: flex;
+    padding: 20px;
+}
+.my-form > div {
+    margin:auto
+}
+@media only screen and (max-width: 500px) {
+    .my-search {
+    height: 40vh;
+    flex-direction: column;
+    }
+    
+.my-form{
+    width:100%
+}
+.signature{
+    width:80%;
+    padding: 5px;
+  }
+  .signature h1{
+      font-size:1.8rem;
+  }
+}
+.my-search input{
+    background-color:#81a3e7;
+    border: 1px solid hsl(219, 46%, 22%);
+
+}
+.my-search form{
+    height:100%;
+}
