@@ -30,7 +30,7 @@ export const Location = function App(props) {
           renderInput={(params) => <TextField {...params} label={props.town ? props.town : 'Lokacija' } variant="outlined" />}
         />
         */
-       <h1>sdad</h1>
+       <h1>Location</h1>
       );
     
     }

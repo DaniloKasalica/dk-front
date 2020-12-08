@@ -19,7 +19,6 @@ export const Main = function App() {
   useEffect(()=>{
     if(navigator.geolocation && check==false )
     {
-      console.log(navigator)
             navigator.geolocation.getCurrentPosition((position)=>{ 
               setInfo((prevstate)=>{
                 setCheck(true)

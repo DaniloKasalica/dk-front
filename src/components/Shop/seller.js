@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 
 import {PictureOutlined } from '@ant-design/icons'
+import { Rate } from 'antd';
 export const Seller = function App(props) {
 
 const [modalinfo,setModalInfo] = useState(false)
@@ -17,6 +18,10 @@ const [modalinfo,setModalInfo] = useState(false)
               <div className="left_seller">
                <h1>{seller.name}</h1>
                <p >{seller.description}</p>
+               <Rate disabled
+                defaultValue={5} 
+                allowHalf ={true} />
+                <p>Broj komentara: 30(4.7)</p><a>pogledaj sve</a>
                </div>
 
 

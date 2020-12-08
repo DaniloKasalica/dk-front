@@ -27,6 +27,9 @@ instance.interceptors.response.use(function (response) {
         localStorage.removeItem("rtdk");
         return false
       }
+
+    }else if(400 === error.response.status){
+      throw new Error(error.response.data.error)
     }
   });
 

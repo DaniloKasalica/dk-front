@@ -3,13 +3,13 @@ import { Card, Button } from 'antd';
 import apiCall from "../../services/apicall";
 import {ShoppingCartOutlined,SendOutlined,PictureOutlined } from '@ant-design/icons'
 import './shop.css'
+
 const { Meta } = Card;
 export const Products = function App(props) {
 const products = props.products
 
 
   const Renderdata = ()=>{
-    console.log(products)
     return products.map((product,index)=>{
      return ( 
       <div className="product">
@@ -25,7 +25,11 @@ const products = props.products
       </button>
     }
     actions={[
-      <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="200">Dodaj</Button> ,
+      <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="200" onClick={async(e)=>{
+        e.preventDefault();
+      const result =await  apiCall.put(`/user/cart/${product.productid}`)
+
+      }}>Dodaj</Button> ,
     <Button type="primary" className="buynow"  icon={<SendOutlined />} shape="round" size="200">Kupi odmah</Button> 
     ]}
   >

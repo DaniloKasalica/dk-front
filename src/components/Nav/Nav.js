@@ -8,44 +8,30 @@ import {
 import { MenuItems } from "./MenuItems";
 import {About} from '../About'
 import {Home} from '../Home'
+import { Menu } from 'antd';
 import './nav.css'
 import {Login} from '../Login/login'
+import {Signup} from '../Login/signup'
 import {Contact} from '../Contact/contact'
 import { PrivateRoute } from "../../PrivateRoute";
 import {Shop} from '../Shop/shop'
 export const Nav = function App() {
     return (
       <Router >
-            <div className="navbar navbar-expand-lg navbar-light ">
-  <Link to="/" className="navbar-brand" href="#">Logo</Link>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
+      <Menu   mode="horizontal">
 
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav mr-auto">
-
-
-
+      <Link className="logo" to='/home'>
+          LOGO
+        </Link>
       {MenuItems.map((item, index) => {
                         return (
-                            <li key={index} className={item.cName} >
-                                <Link to={item.url} className="nav-link">
+                          <Menu.Item className="item" key={item.title}>
+                                <Link to={item.url}>
                                 {item.title}
                                 </Link>
-                            </li>
+                            </Menu.Item>
                         )
                     })}
-
-    </ul>
-    <div className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </div>
-  </div>
-</div>
-
-
 
 
 <Switch>
@@ -54,11 +40,13 @@ export const Nav = function App() {
 <Route exact path="(/|/home)" component={Home} />
 <Route exact path="/about" component={About} />
 <Route exact path="/login" component={Login}/>
+<Route exact path="/signup" component={Signup}/>
 <Route exact path = '/contact' component={Contact}/>
 <Route path="/prodavnica/:id" component={Shop} />
 <PrivateRoute  exact path="/prodavnica/" component={About}/>
 
 </Switch>
+</Menu>
 </Router>
     )
 }

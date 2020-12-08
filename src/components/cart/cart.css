@@ -1,0 +1,12 @@
+.cartbtn{
+    position: fixed;
+    right: 5px;
+    top: 50px;
+    height:auto;
+}
+.cart{
+    width: 30%;
+    position: fixed;
+    right: 5px;
+    top: 50px;
+}

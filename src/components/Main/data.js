@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 export const Data =  function App(props) {
 
   let history = useHistory();
-  const [sellers,setSellers] = useState([])
+  const [sellers,setSellers] = useState(false)
 
 useEffect(()=>{  
   console.log('fetcujemo sa podacima ------>',props.selinfo)
@@ -23,24 +23,22 @@ useEffect(()=>{
 
    }
  })
- console.log(sellersinfo.data)
  if(sellersinfo.data.proizvodjaci[0])
-  props.settown(sellersinfo.data.proizvodjaci[0].town)
   setSellers(sellersinfo.data.proizvodjaci)
-  
-  
-  //settown(sellersinfo.data.proizvodjaci[0].town)
   return sellersinfo.data.proizvodjaci
 }
 fetchsellersinf()
 },[props.selinfo]) 
 
-let url= ''
-const mydatarender= sellers.map((seller)=>{
-seller.sellerimages.forEach(elem => {
+const Mydatarender= ()=>{
+  let url= ''
+ return sellers.map((seller)=>{
+  if(seller.sellerimages)
+   seller.sellerimages.forEach(elem => {
   if(elem.main===1)
   url = elem.url
 });
+
       return (
         <div className="sellercard">
         <div className= "left">
@@ -53,8 +51,6 @@ seller.sellerimages.forEach(elem => {
        <p className="sellerdescription">{seller.description}</p>
        <button className = 'seemorebtn' onClick ={ (e)=>{
          e.preventDefault()
-
-         console.log(seller)
          history.push({
            pathname:`/prodavnica/${seller.id}`,
            state:{seller:seller}
@@ -66,13 +62,11 @@ seller.sellerimages.forEach(elem => {
       )
       
     })
-  
-
-  
+}
     return ( 
       
         <div className="data">
-           {mydatarender}
+           {sellers !==false ?  Mydatarender() : <p>Nema podataka</p>}
       </div>
       
     )
