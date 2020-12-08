@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
-import TextField from '@material-ui/core/TextField';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 
 
 
-const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: (option) => option.town,
-});
 
 export const Location = function App(props) {
     const[town, changeTown] = useState(null)
@@ -24,6 +18,7 @@ export const Location = function App(props) {
  //dodati google api reverse geocode za dobijanje grada
  //slacu zahtjev serveru na onmount (useEffect) sa long i lat za lokaciju 
     return (
+      /*
         <Autocomplete
           onChange={(event, value) => changeTown(value ? value.town : town)}
           id="filter-demo"
@@ -34,6 +29,8 @@ export const Location = function App(props) {
           
           renderInput={(params) => <TextField {...params} label={props.town ? props.town : 'Lokacija' } variant="outlined" />}
         />
+        */
+       <h1>sdad</h1>
       );
     
     }

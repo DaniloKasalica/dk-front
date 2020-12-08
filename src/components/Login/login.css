@@ -1,0 +1,30 @@
+
+.login{
+    
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+.loginform{
+    display: flex;
+    flex-direction: column;
+    margin:auto 20% auto auto
+}
+.forgetpasswordbtn{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.createaccountbtn{
+    margin-top: 5px;
+}
+.loginbtn{
+    width:auto;
+    margin:10px 20px auto auto !important;
+}
+
+@media only screen and (max-width: 500px) {
+    .loginform {
+        margin:auto
+    }
+    
+}

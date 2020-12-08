@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter  as Router,
   Switch,
   Route,
   Link
@@ -9,12 +9,13 @@ import { MenuItems } from "./MenuItems";
 import {About} from '../About'
 import {Home} from '../Home'
 import './nav.css'
-
-
-
+import {Login} from '../Login/login'
+import {Contact} from '../Contact/contact'
+import { PrivateRoute } from "../../PrivateRoute";
+import {Shop} from '../Shop/shop'
 export const Nav = function App() {
     return (
-      <Router>
+      <Router >
             <div className="navbar navbar-expand-lg navbar-light ">
   <Link to="/" className="navbar-brand" href="#">Logo</Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,11 +51,12 @@ export const Nav = function App() {
 <Switch>
 
 
-<Route exact path="(/|/home)" render={() => <Home></Home>} />
-
-
-<Route path="/about" component={About} />
-
+<Route exact path="(/|/home)" component={Home} />
+<Route exact path="/about" component={About} />
+<Route exact path="/login" component={Login}/>
+<Route exact path = '/contact' component={Contact}/>
+<Route path="/prodavnica/:id" component={Shop} />
+<PrivateRoute  exact path="/prodavnica/" component={About}/>
 
 </Switch>
 </Router>

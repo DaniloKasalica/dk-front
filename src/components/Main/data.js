@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from "react";
-import {Detalist} from './detalist'
-import {Location} from './location'
+import React, { useEffect, useReducer, useState } from "react";
 import axios from 'axios'
-export const Data =  function App({selinfo,settown,town }) {
+import { useHistory } from "react-router-dom";
 
+export const Data =  function App(props) {
 
+  let history = useHistory();
   const [sellers,setSellers] = useState([])
 
-
 useEffect(()=>{  
-  console.log('fetcujemo sa podacima ------>',selinfo)
+  console.log('fetcujemo sa podacima ------>',props.selinfo)
   async function fetchsellersinf (){
 
-    console.log(selinfo)
   const sellersinfo =  await axios({
    method: 'POST',
    url: 'http://localhost:3001/api/seller',
    data: {
-       latitude:selinfo.latitude,
-       longitude:selinfo.longitude,
-       location:selinfo.location,
-       sort:selinfo.sort,
-       type:selinfo.type
+       latitude:props.selinfo.latitude,
+       longitude:props.selinfo.longitude,
+       location:props.selinfo.location,
+       sort:props.selinfo.sort,
+       type:props.selinfo.type
 
    }
  })
+ console.log(sellersinfo.data)
  if(sellersinfo.data.proizvodjaci[0])
-  settown(sellersinfo.data.proizvodjaci[0].town)
+  props.settown(sellersinfo.data.proizvodjaci[0].town)
   setSellers(sellersinfo.data.proizvodjaci)
   
   
@@ -34,22 +33,33 @@ useEffect(()=>{
   return sellersinfo.data.proizvodjaci
 }
 fetchsellersinf()
-},[selinfo]) 
+},[props.selinfo]) 
 
-
-    const mydatarender= sellers.map((seller)=>{
+let url= ''
+const mydatarender= sellers.map((seller)=>{
+seller.sellerimages.forEach(elem => {
+  if(elem.main===1)
+  url = elem.url
+});
       return (
         <div className="sellercard">
         <div className= "left">
           <div  className="sellerimage">
-      <img src={'/sellerimage'+seller.image}  alt={seller.name}/>
+      <img src={'/sellerimage'+url}  alt={seller.name}/>
       </div>
-      <p>{seller.number}</p>
-      <p>{seller.email}</p>
       </div>
       <div className="right">
        <h1>{seller.name}</h1>
        <p className="sellerdescription">{seller.description}</p>
+       <button className = 'seemorebtn' onClick ={ (e)=>{
+         e.preventDefault()
+
+         console.log(seller)
+         history.push({
+           pathname:`/prodavnica/${seller.id}`,
+           state:{seller:seller}
+          })
+       }}>Posjeti prodavnicu</button>
 
       </div>
       </div>
@@ -63,7 +73,6 @@ fetchsellersinf()
       
         <div className="data">
            {mydatarender}
-    
       </div>
       
     )

@@ -2,7 +2,7 @@
 
 .my-search{
     height:30vh;
-    width:100vw;
+    width:100%;
     background-color:#81a3e7;
     color:white;
     display: flex;
@@ -52,18 +52,33 @@
 
 .data{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:100%;
 }
 .sellercard{
     display: flex;
-    padding: 20px;
+    flex-direction: column;
+    margin: auto;
+    width: 45%;
+    height: 70vh;
 
 }
 
+
+@media only screen and (max-width: 500px) {
+    .data {
+    flex-direction: column;
+    }.sellercard{
+        width: 90%;
+    
+    }
+    
+}
 .sellercard .left{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 .sellercard .right{
     
@@ -72,12 +87,13 @@
 }
 .sellerimage {
     position: relative;
-    width: 80%; /* The size you want */
+    width: 90%; /* The size you want */
+    margin: 20px auto 20px auto;
   }
   .sellerimage:after {
     content: "";
     display: block;
-    padding-bottom: 100%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
+    padding-bottom: 50%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
   }
   
   .sellerimage img {
@@ -90,4 +106,9 @@
     height: 100%; /* This if for the object-fit */
     object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
     object-position: center;
+  }
+  .seemorebtn{
+      width: fit-content;
+      margin:auto;
+      background-color: rgb(115, 202, 33);
   }

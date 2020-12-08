@@ -1,15 +1,10 @@
 
 import React, {useEffect, useState} from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 
 
 
 
-const filterOptions = createFilterOptions({
-  matchFrom: 'start',
-  stringify: (option) => option.title,
-});
+
 
 export const Detalist = function (props) {
   
@@ -36,8 +31,8 @@ useEffect(()=>{
     <input type="radio" value="Povrce" name="gender" /> Povrce
     <input type="radio" value="Drugo" name="gender" /> Drugo
 </div>
-    {type !==null &&
 
+    {/*type !==null &&
     <Autocomplete
     onChange={(event, value) =>{ changesort(value); console.log('sort')}}
       id="filter-demo"
@@ -47,7 +42,9 @@ useEffect(()=>{
       style={{ width: 150 }}
       renderInput={(params) => <TextField {...params} label="Custom filter" variant="outlined" />}
     />
-  }
+  
+  */}
+  
   </div>
   );
 
