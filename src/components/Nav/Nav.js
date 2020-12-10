@@ -17,6 +17,7 @@ import { PrivateRoute } from "../../PrivateRoute";
 import {Shop} from '../Shop/shop'
 export const Nav = function App() {
     return (
+      <div>
       <Router >
       <Menu   mode="horizontal">
 
@@ -34,19 +35,19 @@ export const Nav = function App() {
                     })}
 
 
+</Menu>
 <Switch>
-
 
 <Route exact path="(/|/home)" component={Home} />
 <Route exact path="/about" component={About} />
 <Route exact path="/login" component={Login}/>
 <Route exact path="/signup" component={Signup}/>
 <Route exact path = '/contact' component={Contact}/>
-<Route path="/prodavnica/:id" component={Shop} />
-<PrivateRoute  exact path="/prodavnica/" component={About}/>
+<PrivateRoute exact path="/prodavnica/:id" component={Shop} />
 
 </Switch>
-</Menu>
 </Router>
+
+</div>
     )
 }

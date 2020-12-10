@@ -2,12 +2,14 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Card, Button } from 'antd';
 import apiCall from "../../services/apicall";
 import {ShoppingCartOutlined,SendOutlined,PictureOutlined } from '@ant-design/icons'
+import {Cart} from '../cart/cart'
 import './shop.css'
 
 const { Meta } = Card;
 export const Products = function App(props) {
 const products = props.products
-
+const [newproduct, setnewproduct] = useState(false)
+const user = props.user
 
   const Renderdata = ()=>{
     return products.map((product,index)=>{
@@ -25,9 +27,15 @@ const products = props.products
       </button>
     }
     actions={[
+
+
       <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="200" onClick={async(e)=>{
         e.preventDefault();
-      const result =await  apiCall.put(`/user/cart/${product.productid}`)
+     await  apiCall.put(`/user/cart/${product.productid}`)
+     setnewproduct(product)
+
+
+
 
       }}>Dodaj</Button> ,
     <Button type="primary" className="buynow"  icon={<SendOutlined />} shape="round" size="200">Kupi odmah</Button> 
@@ -47,15 +55,11 @@ const products = props.products
       }
     
   
-  const showgallery = (e)=>{
-      e.preventDefault();
-      props.setModal(true)
-    
-  }
-  
     return ( 
       <div className="seller_products">
       {props.products!==null ? <Renderdata products = {props.products}/> : <p>nemaproizvoda</p> }
+      
+      <Cart user={user} removeprops ={()=> setnewproduct(false)} product = {newproduct ? newproduct : null }/>
     </div>
     )
 }

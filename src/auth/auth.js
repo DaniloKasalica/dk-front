@@ -1,9 +1,12 @@
 import apiCall from "../services/apicall";
 class AuthService {
     getAuthStatus() {
-      let token = localStorage.getItem("atdk");
-      if(!!token)this.setJwt(token)
-      return !!token ? true : false;
+      let token = localStorage.getItem("rtdk");
+      console.log(token)
+      if(token)
+      return true;
+      else
+      return false;
     }
     setJwt(token) {
       console.log(token)

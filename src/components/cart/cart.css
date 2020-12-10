@@ -5,8 +5,65 @@
     height:auto;
 }
 .cart{
+    z-index:3;
     width: 30%;
+    max-width:300px;
     position: fixed;
-    right: 5px;
-    top: 50px;
+    right: 10px;
+    top: 44px;
+    min-height:300px;
+    display: inline-grid;
+}
+.cardcart{
+    width:100% !important;
+    height:100% !important;
+}
+
+/*row*/
+.cartproductrow {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid var(--primary);
+}
+.cartproductrow .productname{
+    
+    font-size:15px;
+    font-weight: 500;
+    margin: auto auto auto 20px;
+}
+.cartproductrow .prodcutprice{
+    margin: auto 20px auto auto;
+}
+
+ .removeproductbtn{
+    position: absolute;
+    right: 2px;
+    }
+
+.cardcart .fotercart{
+    display: flex !important;
+    width: 20px;
+    }
+    
+.totalprice{
+    margin: 40px 10px 20px auto;
+    display: flex;
+    width: fit-content;
+}
+.totalprice  .priceparagraph {
+    margin-right: 20px;
+    font-size:20px;
+    font-weight: 600;
+    }
+.cartavatar{
+    margin: 40px auto 20px 10px;
+}
+@media only screen and (max-width: 400px) {
+  
+.cart{
+    width: 100%;
+    position: fixed;
+    height:50vh;
+    max-width: 400px;
+}
 }
