@@ -1,0 +1,115 @@
+
+.seller{
+    height:auto;
+    display:flex;
+    flex-direction: row;
+    margin: 40px 60px 80px 60px;
+}
+
+.left_seller{
+    display:flex;
+    flex-direction: column;  
+    justify-content:space-evenly;
+
+    width: 40%;
+    margin-right:20px;
+}
+.left_seller p{
+  align-self: center;
+}
+.right_seller {
+    margin-left: 10px;
+    position: relative;
+    width: 100%; /* The size you want */
+  }
+  .seller_image:after {
+    content: "";
+    display: block;
+    padding-bottom: 50%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square!!! */
+  }
+  
+  .seller_image img {
+    position: absolute; /* Take your picture out of the flow */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; /* Make the picture taking the size of it's parent */
+    width: 100%; /* This if for the object-fit */
+    height: 100%; /* This if for the object-fit */
+    object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+    object-position: center;
+  }
+
+
+
+  /*modal*/
+  .ant-modal-content{
+  width: 95%;
+  margin: auto;
+  max-width: 800px;
+  }
+
+  
+ .anticon-right {
+     
+    right: 20px;
+    top: 50%;
+    position: absolute;
+    font-size: 30px;
+}
+.anticon-left{
+
+  font-size: 30px;
+    left: 20px;
+    top: 50%;
+    position: absolute;
+}
+  /* PRoducts*/
+
+
+  .seller_products{
+    margin: 40px 80px 20px 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+.product{
+  width:33%;
+  max-width: 400px;
+  margin-bottom: 40px;
+}
+.buynow{
+    background: #5bc95b;
+    border-color: #5bc95b
+}
+.imageicon{
+position: absolute;
+bottom: 10px;
+left: 10px;
+font-size: 20px;
+color:#5bc95b;
+}
+
+.ant-card{
+  width: 90%;
+  margin: auto;
+}
+  .ant-card-cover:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square!!! */
+  }
+  
+  .ant-card-cover img {
+    position: absolute; /* Take your picture out of the flow */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; /* Make the picture taking the size of it's parent */
+    width: 100%; /* This if for the object-fit */
+    height: 100%; /* This if for the object-fit */
+    object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+    object-position: center;
+  }
+

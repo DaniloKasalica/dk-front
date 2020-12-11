@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {Products} from './products'
 import {Seller} from './seller'
-import apiCall from "../../services/apicall";
+import apiCall from '../../../services/apicall'
 import {MyModal} from './modal'
 
 import {LeftOutlined,RightOutlined} from '@ant-design/icons'
@@ -13,15 +13,12 @@ export const Shop = function App(props) {
   const [modalinfo,setModalInfo]=useState({
     openmodal:false
   })
-  
- const id = props.id
+  let id = 1;
   console.log(modalinfo,'<modalinfoooooo')
  
 
    const getdata =async()=>{ 
      try{
-      console.log(id,'<---------id')
-    console.log('fetcujemo podatke za id------->',id)
    const data = await apiCall.get(`products/seller/${id}`);
    setSeller({products:data.data.products,seller:data.data.seller})
   }catch(err){
