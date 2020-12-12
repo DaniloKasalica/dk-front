@@ -1,6 +1,7 @@
 import React from "react";
 import { MenuItems } from "./MenuItems";
 import {Login} from '../Login/login'
+import {Signup} from '../Login/signup'
 import { PrivateRoute } from "../../PrivateRoute";
 import {
   BrowserRouter  as Router,
@@ -28,8 +29,9 @@ export const Sellernav = function App() {
 
 <Switch>
 
-<PrivateRoute exact path="/mojaprodanivca" component={Shop} />
-<Route exact path="/seller/login" component={Login} />
+<PrivateRoute exact path="/mojaprodavnica" component={Shop} />
+<Route exact path="/mojaprodavnica/login" component={Login} />
+<Route exact path = '/mojaprodavnica/signup' component = {Signup}/>
 </Switch>
 </Router>
 

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {auth} from '../../../auth/authseller' 
 import {validation} from '../../../services/validation' 
 import { useHistory } from "react-router-dom";
-import apiCall from "../../services/apicall";
+import apiCall from "../../../services/apicall";
 
 
 import { Input, Space,Button } from 'antd';

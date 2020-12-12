@@ -5,13 +5,14 @@ import { auth } from "../auth/authseller";
 export const PrivateRoute = (props) => {
   let Component = props.component;
   let isAuthenticated = auth.getAuthStatus();
+  console.log(auth.getAuthStatus())
   return (
     <Route
       render={(props) => {
-        return isAuthenticated ? (
+        return auth.getAuthStatus() ===false ? (
           <Component {...props} ></Component>
         ) : (
-          <Redirect to="/seller/login"></Redirect>
+          <Redirect to="/mojaprodavnica/login"></Redirect>
         );
       }}
     ></Route>

@@ -2,11 +2,16 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Card, Button } from 'antd';
 import apiCall from "../../../services/apicall";
 import {ShoppingCartOutlined,SendOutlined,PictureOutlined } from '@ant-design/icons'
+import {Newproduct} from './Newproduct'
+import {Updateproductdescription} from './Updateproductdescription'
+import {Updateproductimages} from './updateproductimages'
 import './shop.css'
-
 const { Meta } = Card;
 export const Products = function App(props) {
 const products = props.products
+
+
+
   const Renderdata = ()=>{
     return products.map((product,index)=>{
      return ( 
@@ -25,12 +30,9 @@ const products = props.products
     actions={[
 
 
-      <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="200" onClick={async(e)=>{
-        e.preventDefault();
 
-
-      }}>Dodaj</Button> ,
-    <Button type="primary" className="buynow"  icon={<SendOutlined />} shape="round" size="200">Kupi odmah</Button> 
+     <Updateproductimages  id = {product.productid} images = {product.productimages} />,
+    <Updateproductdescription id ={product.productid} description={product} />
     ]}
   >
     <Meta
@@ -41,6 +43,8 @@ const products = props.products
     />
   </Card>
      </div>
+     
+ 
      )
       })
        
@@ -50,7 +54,7 @@ const products = props.products
     return ( 
       <div className="seller_products">
       {props.products!==null ? <Renderdata products = {props.products}/> : <p>nemaproizvoda</p> }
-      
+      <Newproduct/> 
     </div>
     )
 }

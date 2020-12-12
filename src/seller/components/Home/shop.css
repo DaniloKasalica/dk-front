@@ -113,3 +113,112 @@ color:#5bc95b;
     object-position: center;
   }
 
+
+
+
+
+/* Update seller area btns and inputs*/
+  .updatesellerarea{
+    display: flex;
+    padding: 0 20px 0 20px;
+  }
+  .updateescription{
+    width: 80%;
+    margin-top: 10px;
+
+  }
+
+  .changedescription{
+    width:35%;
+    display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+  .changedescription button{
+    width: fit-content;
+  }
+
+
+
+  
+  .addimage{
+    align-items: center;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .displayimagesupdate{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .addimagesellerparent{
+    width: 200px !important;
+    height: 100px;
+    margin: 10px;
+  }
+  .addimagesellerparent img {
+    width: 200px; /* This if for the object-fit */
+    height: 100px; /* This if for the object-fit */
+  }
+
+
+  .addimage button{
+    width: fit-content;
+  }
+
+
+
+
+
+
+  /* Update product*/
+
+  .btnaddprod{
+    position: absolute;
+    height: 100%;
+  }
+
+  .updateproductdescription{
+    width: 200%;
+    margin-top: 10px;
+    margin-left: -100%;
+  }
+
+
+
+
+  
+  
+ 
+  
+  .addimageproduct{
+    width: 200%;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .displayimagesupdateproduct{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .addimageproductparent{
+    width: 100px !important;
+    height: 100px;
+    margin: 10px;
+  }
+  .addimageproductparent img {
+    width: 100px; /* This if for the object-fit */
+    height: 100px; /* This if for the object-fit */
+  }
+
+  .addimageproductbtn {
+    width: fit-content;
+    background-color:#5bc95b ;
+  }
+  .adddescriptionproduct{
+    width: fit-content;
+  }
