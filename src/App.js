@@ -8,7 +8,7 @@ export default function App() {
   console.log(window.location.pathname)
   return (
   <div className="App">
-    {window.location.pathname==='/mojaprodavnica'? 
+    {window.location.pathname.includes('/mojaprodavnica')? 
     <Sellernav/>
     :
     <Nav/>

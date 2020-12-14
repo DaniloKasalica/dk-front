@@ -2,20 +2,18 @@ import React, { useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {Products} from './products'
 import {Seller} from './seller'
-import apiCall from '../../../services/apicall'
 import {MyModal} from './modal'
-
+import apiCall from '../../../services/apicall'
 import {LeftOutlined,RightOutlined} from '@ant-design/icons'
 import './shop.css'
 export const Shop = function App(props) {
 
-  const [seller, setSeller]  = useState({})
+  const [seller, setSeller]  = useState(false)
   const [modalinfo,setModalInfo]=useState({
     openmodal:false
   })
-  let id = 1;
-  console.log(modalinfo,'<modalinfoooooo')
- 
+  const id = props.id;
+  const name = props.name
 
    const getdata =async()=>{ 
      try{
@@ -26,24 +24,35 @@ export const Shop = function App(props) {
   }
    }
 
-
    useEffect(()=>{
-     console.log('ajde')
      getdata()
    },[])
+   console.log('usao u shop', seller)
+   useEffect(()=>{
+     console.log('promjenio se seller u shopu', seller)
+  },[seller])
 
-if(seller.seller)
-  console.log(seller.seller.sellerimages,'sellerrimages')
     return ( 
       <div className="container_shop">
       <Seller
-         modalinfo = {()=>{setModalInfo({
+         modalinfo = {(images)=>{setModalInfo({
           openmodal:true,
-          images:seller.seller.sellerimages
+          images:images
         })
+        
       }}
+      updateseller = {(seller)=>{setModalInfo((prev)=>{
+        return{
+          ...prev,
+          seller:seller
+          }
+          
+        })
+    }}
+
         sellerinfo = {seller.seller ? seller.seller : null}/>
      <Products
+     sellerid ={id}
       modalinfo = {(image)=>{setModalInfo({
         openmodal: true,
         images:image

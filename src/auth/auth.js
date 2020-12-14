@@ -14,7 +14,7 @@ class AuthService {
     }
     async login(body) {
       try{
-      const data  = await apiCall.post("user/login",body);
+      const data  = await apiCall.post("login",body);
       localStorage.setItem("atdk", data.data.accesToken);
       localStorage.setItem("rtdk", data.data.refreshToken);
       this.setJwt(data.data.accesToken);

@@ -1,28 +1,32 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Card, Button } from 'antd';
-import apiCall from "../../../services/apicall";
+import apiCall from "../../../services/apicallseller";
 import {ShoppingCartOutlined,SendOutlined,PictureOutlined,PlusCircleOutlined } from '@ant-design/icons'
+
+import {Updateproductimages} from './updateproductimages'
+import {Updateproductdescription} from './Updateproductdescription'
 const { Meta } = Card;
 export const Newproduct = function App(props) {
 
 const [newproducts,addnewproduct] = useState([
-])
+]) 
 
 
+const addproduct = async ()=>{
+  const result  = await apiCall.post(`products/newprod`)
 
-
-const addproduct = ()=>{
     addnewproduct((prev)=>{
         return [...prev,{
         price:0,
         productimages:[
             {
-                url:'/homeheader.jpg'
+                url:'/noimage.png'
             }
         ],
         quantity:0,
         unit:'kg',
-        name:'Ime proizvoda'
+        name:'Ime proizvoda',
+        productid: result.data.productid
         }]
     })
 }
@@ -35,23 +39,14 @@ const addproduct = ()=>{
       <button onClick={()=>{props.modalinfo(product.productimages)}}>
       <img
         alt={product.productid}
-        src={'/sellerimage'+product.productimages[0].url}
+        src={product.productimages[0].url}
       />
       <PictureOutlined className="imageicon"/>
       </button>
     }
     actions={[
-
-
-      <Button type="primary" shape="round" icon={<ShoppingCartOutlined />} size="200" onClick={async(e)=>{
-        e.preventDefault();
-
-
-      }}>Izmjeni slike</Button> ,
-    <Button type="primary" 
-    className="buynow"
-     icon={<SendOutlined />} shape="round"
-      size="200">Promjeni detalje</Button> 
+     <Updateproductimages  id = {product.productid} images = {product.productimages} />,
+     <Updateproductdescription id ={product.productid} description={product} />
     ]}
   >
     <Meta
@@ -88,8 +83,6 @@ const addproduct = ()=>{
   </Card>
   
      </div>
-
-
          </>
       
     )

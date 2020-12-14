@@ -3,7 +3,7 @@ import { Input } from 'antd';
 
 import {PictureOutlined,FileJpgOutlined,UploadOutlined,InboxOutlined   } from '@ant-design/icons'
 import { Button } from 'antd';
-import apiCall from '../../../services/apicall'
+import apiCall from '../../../services/apicallseller'
 export const Updatedescription = function App(props) {
 
 
@@ -26,7 +26,6 @@ const { TextArea } = Input;
 
  const check = adddescription
  const checkdescription = props.description
- console.log(description===checkdescription)
     return ( 
       <div className="changedescription">
           <Button type="primary" onClick={(e)=>{

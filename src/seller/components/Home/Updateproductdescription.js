@@ -3,7 +3,7 @@ import { Input } from 'antd';
 
 import {PictureOutlined,FileJpgOutlined,UploadOutlined,SendOutlined} from '@ant-design/icons'
 import { Button } from 'antd';
-import apiCall from '../../../services/apicall'
+import apiCall from '../../../services/apicallseller'
 export const Updateproductdescription = function App(props) {
 
 
@@ -30,7 +30,6 @@ const id = props.id
  }
 
 const hendleunit = (e)=>{
-    console.log(e.target.value)
     setDescription((prev)=>{
 
         return{ 
@@ -90,7 +89,6 @@ const hendlquantity = (e)=>{
  const checkdescription = props.description
 
 
- console.log(description===checkdescription)
     return ( 
       <div className="changedescriptionproduct">
           

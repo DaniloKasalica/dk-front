@@ -13,7 +13,7 @@ useEffect(()=>{
 
   const sellersinfo =  await axios({
    method: 'POST',
-   url: 'http://localhost:3001/api/seller',
+   url: 'http://localhost:3001/api/user/seller',
    data: {
        latitude:props.selinfo.latitude,
        longitude:props.selinfo.longitude,

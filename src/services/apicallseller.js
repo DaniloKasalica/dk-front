@@ -1,6 +1,6 @@
 import axios from "axios";
 import {auth} from "../auth/auth"
-const apiUrl = "http://localhost:3001/api/user/";
+const apiUrl = "http://localhost:3001/api/seller/";
 
 const instance= axios.create({
   baseURL: apiUrl
@@ -14,17 +14,17 @@ instance.interceptors.response.use(function (response) {
       auth.logout()
     } else if (403 === error.response.status) { 
         const res = await instance.post("token", {
-        token: localStorage.getItem("rtdk")
+        token: localStorage.getItem("rtsdk")
       })
       if(res.status===200){
-      localStorage.setItem("atdk", res.data.accessToken);
+      localStorage.setItem("atsdk", res.data.accessToken);
       originalRequest.headers["Authorization"] =
       "Bearer " + res.data.accessToken;
       const resp = await axios(originalRequest);
       return resp;
       }else {
-        localStorage.removeItem("atdk");
-        localStorage.removeItem("rtdk");
+        localStorage.removeItem("atsdk");
+        localStorage.removeItem("rtsdk");
         return false
       }
 

@@ -29,7 +29,7 @@ export const Sellernav = function App() {
 
 <Switch>
 
-<PrivateRoute exact path="/mojaprodavnica" component={Shop} />
+<PrivateRoute exact path="/mojaprodavnica/:name/:id" component={Shop} />
 <Route exact path="/mojaprodavnica/login" component={Login} />
 <Route exact path = '/mojaprodavnica/signup' component = {Signup}/>
 </Switch>

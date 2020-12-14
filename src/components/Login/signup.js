@@ -71,7 +71,7 @@ export const Signup = function App(props) {
     try{
         if(values.errorusername===false && values.errormail===false &&   values.errornumber===false &&  values.errorpass===false )
         {
-  const data = await apiCall.post('/user/signup',{
+  const data = await apiCall.post('signup',{
         email:values.email,
         username:values.username,
         password: values.password,

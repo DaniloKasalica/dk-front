@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ImgCrop from 'antd-img-crop';
 import {PictureOutlined,FileJpgOutlined,UploadOutlined,PlusCircleOutlined  } from '@ant-design/icons'
 import { Rate,Button, Upload, message, } from 'antd';
-import apiCall from '../../../services/apicall'
+import apiCall from '../../../services/apicallseller'
 export const Uploadimagebtn = function App(props) {
 
 
@@ -14,38 +14,38 @@ const fileInput = useRef(null);
 let images = props.images
 let name = props.name
 let id = props.id
-let imagesnumberbefore =0
- imagesnumberbefore = images.length;
+ let imagesnumberbefore = images.length;
 
+ console.log('usao u uploud images',images,fileList)
 const imgselect = (e)=>{
   setFileList((prev)=>{
-  return  [...prev,URL.createObjectURL(e.target.files[0])]
+  return  [...prev,{
+    url: URL.createObjectURL(e.target.files[0]),
+   blob: e.target.files[0]
+  }]
   })
 }
 const Uploatimage = async ()=>{
-
-  console.log('pokusaj')
   const fd = new FormData();
-  fd.append('image',fileList,'seller',name)
-  await  apiCall.post(`seller/${id}`,fd)
-  console.log('ktraj zahtjeva')
+
+  fileList.forEach((file,index)=>{
+  return fd.append('image',file.blob,`${name}[${index+imagesnumberbefore}].jpg`)
+  })
+  const urls = await  apiCall.post(`images`,fd)
+  console.log('ktraj zahtjeva',urls.data)
+  setFileList([])
+ props.sellerinfo(urls.data)
+
+
 }
  const renderimages =  (images,kind)=>{
    return images.map((image)=>{
-     if(kind === 'old')
-     {
        return (
     <div className="addimagesellerparent">
-    <img src={`/sellerimage/${image.url}`} alt="#" />
+    <img src={image.url} alt="#" />
     </div>
-     )}else{
-       return ( 
-        <div className="addimagesellerparent">
-        <img src={image} alt="#" />
-        </div>
-       )
-     }
-    })
+       )}
+    )
 }
 const check = AddImage
 
@@ -83,6 +83,7 @@ const check = AddImage
     <input
      ref = {fileInput}
      style = {{display:'none'}}
+     multiple
      type = "file" 
      onChange={imgselect}/>
  

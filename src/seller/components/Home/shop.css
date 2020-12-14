@@ -172,7 +172,11 @@ color:#5bc95b;
 
 
 
+.yourproductsheading{
+    margin: 20px auto 0 auto;
+width: fit-content;
 
+}  
 
   /* Update product*/
 
@@ -184,7 +188,7 @@ color:#5bc95b;
   .updateproductdescription{
     width: 200%;
     margin-top: 10px;
-    margin-left: -100%;
+    margin-left: 0%;
   }
 
 
@@ -195,8 +199,9 @@ color:#5bc95b;
  
   
   .addimageproduct{
-    width: 200%;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     flex-direction: column;
 
   }

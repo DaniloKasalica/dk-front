@@ -3,23 +3,42 @@ import React, { useState, useEffect, useMemo } from "react";
 import ImgCrop from 'antd-img-crop';
 import {PictureOutlined,FileJpgOutlined,UploadOutlined,InboxOutlined   } from '@ant-design/icons'
 import { Rate,Button, Upload, message, } from 'antd';
-import apiCall from '../../../services/apicall'
+import apiCall from '../../../services/apicallseller'
 import {Uploadimagebtn} from './Uploudimagebtn'
 import {Updatedescription} from './Updatedescription'
 export const Seller = function App(props) {
 
+  const [sellerinfo,setSellerinfo] = useState(null)
 
-const [modalinfo,setModalInfo] = useState(false)
+useEffect(()=>{
+if(props.sellerinfo!==null){
+console.log(props.sellerinfo)
+setSellerinfo(props.sellerinfo)
+}
+},[props.sellerinfo])
+
+console.log('usao u seller', sellerinfo)
+
+useEffect(()=>{
+  console.log('Promjenio se selerinfo u selleru',sellerinfo)
+  props.updateseller((sellerinfo))
+},[sellerinfo])
 
 
-let seller = props.sellerinfo
+let seller = sellerinfo
 
     const Mydatarender= ()=>{
-        let url =''
+      let url = ''
+      if(seller.sellerimages[0])
+         url =seller.sellerimages[0].url
+         else
+         url = '/noimage.png'
+        /*
         seller.sellerimages.forEach(elem => {
           if(elem.main===1)
           url = elem.url
         });
+        */
               return (
                 <div className="updateseller">
                 <div className = "seller">
@@ -34,12 +53,10 @@ let seller = props.sellerinfo
                </div>
 
 
-
-
                <div className="right_seller">
                   <div className="seller_image">
-                    <button onClick={()=>{props.modalinfo()}}>
-              <img src={'/sellerimage'+url}  alt={seller.name}/>
+                    <button onClick={()=>{props.modalinfo(seller.sellerimages)}}>
+              <img src={url}  alt='dodaj sliku gazdinstva'/>
             <PictureOutlined className="imageicon"/>
               </button>
               </div>
@@ -49,7 +66,18 @@ let seller = props.sellerinfo
                </div>
                <div className="updatesellerarea">
                <Updatedescription id = {seller.id} description={seller.description}/>
-               <Uploadimagebtn id = {seller.id} name = {seller.name} images= {seller.sellerimages}/>
+               <Uploadimagebtn 
+                sellerinfo = {(images)=>{setSellerinfo((prev)=>{
+
+                  return{
+                  ...prev,
+                  sellerimages:[...prev.sellerimages,...images]
+                  }
+                })
+              }}
+                 id = {seller.id}
+                 name = {seller.name} 
+                 images= {seller.sellerimages}/>
                </div>
                </div>
               )
@@ -57,7 +85,7 @@ let seller = props.sellerinfo
             }
     return ( 
       <div >
-      {props.sellerinfo!==null ? Mydatarender(): <p>loader</p> }
+      {seller!==null ?  Mydatarender(): <p>loader</p> }
     
     </div>
     )

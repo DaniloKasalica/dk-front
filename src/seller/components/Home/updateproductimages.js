@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ImgCrop from 'antd-img-crop';
 import {PictureOutlined,FileJpgOutlined,UploadOutlined,PlusCircleOutlined  } from '@ant-design/icons'
 import { Rate,Button, Upload, message, } from 'antd';
-import apiCall from '../../../services/apicall'
+import apiCall from '../../../services/apicallseller'
 export const Updateproductimages = function App(props) {
 
 
@@ -23,7 +23,6 @@ const imgselect = (e)=>{
 }
 const Uploatimage = async ()=>{
 
-  console.log('pokusaj')
   const fd = new FormData();
   fd.append('image',fileList,'seller',name)
   await  apiCall.post(`seller/${id}`,fd)
@@ -54,7 +53,8 @@ const check = AddImage
       type="primary" 
       shape="round"
       className="addimageproductbtn"
-       icon={<PictureOutlined />} size="200"  onClick={(e)=>{
+       icon={<PictureOutlined />} size="200" 
+        onClick={(e)=>{
         e.preventDefault();
         if(check)
         setAddImage(false)
@@ -71,7 +71,7 @@ const check = AddImage
         renderimages(fileList,'true')
         :null}
 
-{imagesnumberbefore+fileList.length <5 ?
+{imagesnumberbefore+fileList.length <3 ?
 
          <button onClick={(e)=>{
            e.preventDefault()
@@ -81,7 +81,7 @@ const check = AddImage
          : null
 } 
         </div>
-        {imagesnumberbefore+fileList.length <5 ?
+        {imagesnumberbefore+fileList.length <3 ?
     <div>
     <input
      ref = {fileInput}
@@ -90,7 +90,7 @@ const check = AddImage
      onChange={imgselect}/>
  
     </div>
-        : <p>Maskimalan broj slika za domacinstvo je 7</p>
+        : <p>Maskimalan broj slika za proizvod je 3</p>
          }
            
     <Button  onClick={Uploatimage}

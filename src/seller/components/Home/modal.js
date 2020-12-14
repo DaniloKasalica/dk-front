@@ -8,14 +8,18 @@ export const MyModal = (props) => {
 
   const goleft = ()=>{
       setCurrent((current)=>{
-          if(current===0)
+          if(images[0]===undefined)
+          return current
+          else if(current===0)
           return images.length-1;
           return current-1
       })
   }
   const goright = ()=>{
       setCurrent((current)=>{
-          if(current===images.length-1)
+        if(images[0]===undefined)
+        return current
+         else if(current===images.length-1)
           return 0;
           return current+1;
       })
@@ -37,7 +41,7 @@ export const MyModal = (props) => {
           images ? 
           <div>
           <div className="seller_image"> 
-      <img src={'/sellerimage'+images[current].url}  alt={images[current].url}/>
+      <img  src={images[current]!==undefined ? images[current].url : '/noimage.png' }  alt={images[current] ? images[current].url : 'noimage'} />
       </div>
      <LeftOutlined onClick={goleft} />
       <RightOutlined onClick={goright} /> 

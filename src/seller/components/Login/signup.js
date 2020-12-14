@@ -4,11 +4,14 @@ import {Link} from 'react-router-dom'
 import {auth} from '../../../auth/authseller' 
 import {validation} from '../../../services/validation' 
 import { useHistory } from "react-router-dom";
-import apiCall from "../../../services/apicall";
+import apiCall from "../../../services/apicallseller";
 
 
 import { Input, Space,Button } from 'antd';
+
 import { EyeInvisibleOutlined, EyeTwoTone,UserOutlined,MailOutlined  } from '@ant-design/icons';
+
+const { TextArea } = Input;
 export const Signup = function App(props) {
 
   let history = useHistory();
@@ -21,18 +24,15 @@ export const Signup = function App(props) {
       errorname:false,
       number:'',
       errornumber:false,
+      description :'',
+      packet:1,
       errormessage:false
       
     });
     
 
-  const handleUsername = (e)=>{
-    let message =''
-    if(validation.usernamevalidation(e.target.value)===false)
-    message = 'Username mora da sadrži 8 ili više karaktera'
-    else
-     message = false
-    setValues({ ...values, username:e.target.value, errorusername:message });
+  const handleName = (e)=>{
+    setValues({ ...values, name:e.target.value});
   }
   const handleEmail = (e)=>{
       
@@ -54,35 +54,29 @@ export const Signup = function App(props) {
      message = false
     setValues({ ...values, password:e.target.value,errorpass:message});
   }
-  const checkvalues =  (obj)=>{
-   if(validation.passvalidation(obj.password)){
-   if(validation.emailvalidation(obj.email)===false){
-   if(validation.usernamevalidation(obj.username))
-   return Promise.resolve('username')
-   return Promise.reject('Pogrešan email ili username')
-   }
-    return Promise.resolve('email')
-
-  }else{
-    return Promise.reject('Pogrešan password')
-  }
-  }
+ 
+  const handledescription = (e)=>{
+    console.log(e.target.value)
+   setValues({ ...values,
+     description:e.target.value});
+ }
   const sendSingup= async ()=>{
     try{
-        if(values.errorusername===false && values.errormail===false &&   values.errornumber===false &&  values.errorpass===false )
+        if( values.errormail===false &&   values.errornumber===false &&  values.errorpass===false )
         {
-  const data = await apiCall.post('/user/signup',{
+  const data = await apiCall.post('signup',{
         email:values.email,
-        username:values.username,
+        name:values.name,
         password: values.password,
-        number:values.number
-    
+        number:values.number,
+        description:values.description,
+        packet:values.packet
     })
     
     localStorage.setItem("atsdk", data.data.accesToken);
     localStorage.setItem("rtsdk", data.data.refreshToken);
     auth.setJwt(data.data.accesToken)
-   history.push('/')
+   history.push(`/mojaprodavnica/${data.data.name}/${data.data.id}`)
 }
     }catch(err){
         setValues({...values,
@@ -93,9 +87,9 @@ export const Signup = function App(props) {
     return (
       <div className="login">
         <div className="loginform">
-    <Space direction="vertical">
+      <Space direction="vertical">
       <h1>Registracija</h1>
-     <Input onChange={handleUsername} placeholder="Username" prefix={<UserOutlined />} />
+     <Input onChange={handleName} placeholder="Ime gazdinstva" prefix={<UserOutlined />} />
      {values.errorusername ? <p className="errormessage">{values.errorusername}</p> :null}
      <Input onChange={handleEmail} placeholder="Email" prefix={<MailOutlined />} />
      {values.errormail ? <p className="errormessage">{values.errormail}</p> :null}
@@ -106,9 +100,20 @@ export const Signup = function App(props) {
       iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
     />
     {values.errorpass ? <p className="errormessage">{values.errorpass}</p> :null}
+
+    <TextArea
+          className="textareaupdatedescription"
+          showCount maxLength={220}
+          onChange={handledescription}
+          autoSize={{ minRows: 3, maxRows: 7 }}
+          placeholder = 'Dodajte opis vašeg gazdinstva'
+        />
+
+
+
     {values.errormessage ? <p className="errormessage">{values.errormessage}</p> : null}
     <Button  onClick={sendSingup} className="loginbtn" type="primary" >
-          Registruj se!
+          Registruj gazdinstvo!
         </Button> 
   </Space>
   </div>

@@ -11,7 +11,7 @@ export const Cart = function App(props) {
     const color = 'orange';
 const user = props.username
 const getproducts = async()=>{
-const result = await apiCall('user/cart')
+const result = await apiCall('cart')
  setproducts(result.data.cart)
 }
 useEffect(()=>{
@@ -33,7 +33,7 @@ const removeproduct = async (productid)=>{
     try{
         let arr = [...products];
         console.log(arr,'1')
-        await apiCall.delete(`user/cart/${productid}`)
+        await apiCall.delete(`cart/${productid}`)
         
         let index = 0
          arr.forEach((elem,i)=>{
